@@ -440,10 +440,11 @@ def devices_from_nspace(nspace):
         Dictionary of devices.
     """
     import ophyd
+    import yaqc_bluesky
 
     devices = {}
     for item in nspace.items():
-        if isinstance(item[1], ophyd.Device):
+        if isinstance(item[1], (ophyd.Device, yaqc_bluesky.Base)):
             devices[item[0]] = item[1]
     return devices
 
