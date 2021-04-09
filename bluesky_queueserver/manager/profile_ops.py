@@ -444,6 +444,7 @@ def devices_from_nspace(nspace):
 
     devices = {}
     for item in nspace.items():
+        print(item)
         if isinstance(item[1], (ophyd.Device, yaqc_bluesky._base.Base)):
             devices[item[0]] = item[1]
     print("RETURNED FROM DEVICES_FROM_NSPACE", devices)
