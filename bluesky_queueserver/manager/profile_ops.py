@@ -439,16 +439,12 @@ def devices_from_nspace(nspace):
     dict(str: callable)
         Dictionary of devices.
     """
-    import ophyd
-    import yaqc_bluesky
+    from bluesky import abc
 
     devices = {}
     for item in nspace.items():
-        print(item)
-        if isinstance(item[1], (ophyd.Device, yaqc_bluesky._base.Base)):
+        if isinstance(item[1], (abc.Readable, abc.Flyable)):
             devices[item[0]] = item[1]
-    devices = {k: nspace[k] for k in ("w1", "d1", "daq")}
-    print("RETURNED FROM DEVICES_FROM_NSPACE", devices)
     return devices
 
 
