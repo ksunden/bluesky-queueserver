@@ -313,7 +313,7 @@ def load_startup_script(script_path, *, keep_re=False, enable_local_imports=True
     nspace: dict
         namespace that contains objects loaded from the module.
     """
-    importlib.invalidate_caches()
+    # importlib.invalidate_caches()
 
     if not os.path.isfile(script_path):
         raise ImportError(f"Failed to load the script '{script_path}': script was not found")
@@ -1132,6 +1132,7 @@ def _process_plan(plan):
         working_dict["default_pickled"] = bytes2hex(pickle.dumps(p.default))
 
         working_dict["annotation"] = str(filter_values(p.annotation))
+        print(p.annotation, type(p.annotation))
         working_dict["annotation_pickled"] = bytes2hex(pickle.dumps(p.annotation))
 
         if param_annotation and ("parameters" in param_annotation):
